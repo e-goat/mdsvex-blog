@@ -24,4 +24,4 @@ pnpm install && pnpm check
 pnpm dev
 ```
 
-## *__Voilà__*
+*__Voilà__*
