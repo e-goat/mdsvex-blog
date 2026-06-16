@@ -1,42 +1,27 @@
-# sv
+# My personal web space served by bunch of markdown files
+---
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+This is supposed to be version 2.0 of my current website [blog](mduchev.xyz)
 
-## Creating a project
+Built with [mdsvex](mdsvex.com), a Markdown preprocessor designed specifically for Svelte.
 
-If you're seeing this, you've probably already done this step. Congrats!
+You can think of it as the Svelte equivalent of MDX (which is used in the React ecosystem).
 
-```sh
-# create a new project
-npx sv create my-app
+## Installation
+---
+First of all you need [pnpm](https://pnpm.io/installation)
+```bash
+curl -fsSL https://get.pnpm.io/install.sh | sh -
 ```
 
-To recreate this project with the same configuration:
-
-```sh
-# recreate this project
-pnpm dlx sv@0.16.1 create --template minimal --types ts --add prettier eslint tailwindcss="plugins:typography" mdsvex --install pnpm personal-blog-svelte
+Install the required dependencies:
+```bash
+pnpm install && pnpm check
 ```
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+## Start the application locally:
+```bash
+pnpm dev
 ```
 
-## Building
-
-To create a production version of your app:
-
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+## *__Voilà__*
