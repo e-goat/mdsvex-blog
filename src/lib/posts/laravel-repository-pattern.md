@@ -1,0 +1,199 @@
+---
+layout: article
+title: The Repository Pattern in Laravel - when it earns its complexity
+description: How to implement the Repository Pattern in Laravel and, more importantly, when the abstraction is worth adding.
+date: '2025-06-02'
+tags:
+    [
+        'Laravel',
+        'PHP',
+        'Design Patterns',
+        'Repository Pattern',
+        'Clean Code',
+        'Software Architecture'
+    ]
+---
+
+## The problem isn't Eloquent
+
+Controllers that query Eloquent directly aren't failing to use the right design pattern they're failing to separate concerns. The repository pattern solves this by making data access a named, replaceable boundary. Before reaching for it, know what you're actually getting: testability, swappability, and a single place to maintain query logic.
+
+If your app is simple CRUD with no complex queries, this is overhead. If you're building something that grows, it pays for itself.
+
+## The contract
+
+Start with an interface. This is what forces clarity about what your data layer actually does:
+
+```php
+<?php
+namespace App\Repositories\Contracts;
+
+interface ArticleRepositoryInterface
+{
+    public function getPublished(int $perPage = 15, array $with = []): LengthAwarePaginator;
+    public function findBySlug(string $slug, array $with = []): Article;
+    public function create(array $data): Article;
+    public function update(int $id, array $data): Article;
+    public function delete(int $id): bool;
+    public function search(string $query, int $perPage = 15): LengthAwarePaginator;
+}
+```
+
+## The implementation
+
+```php
+<?php
+namespace App\Repositories;
+
+class ArticleRepository implements ArticleRepositoryInterface
+{
+    public function __construct(protected Article $model) {}
+
+    public function getPublished(int $perPage = 15, array $with = []): LengthAwarePaginator
+    {
+        return $this->model->with($with)
+            ->where('published', true)
+            ->whereNotNull('published_at')
+            ->orderByDesc('published_at')
+            ->paginate($perPage);
+    }
+
+    public function findBySlug(string $slug, array $with = []): Article
+    {
+        return $this->model->with($with)->where('slug', $slug)->firstOrFail();
+    }
+
+    public function create(array $data): Article
+    {
+        if (!isset($data['slug']) && isset($data['title'])) {
+            $data['slug'] = Str::slug($data['title']);
+        }
+        if (!empty($data['published']) && empty($data['published_at'])) {
+            $data['published_at'] = now();
+        }
+        return $this->model->create($data);
+    }
+
+    public function update(int $id, array $data): Article
+    {
+        $article = $this->model->findOrFail($id);
+        if (isset($data['title']) && $data['title'] !== $article->title) {
+            $data['slug'] = Str::slug($data['title']);
+        }
+        $article->update($data);
+        return $article->fresh();
+    }
+
+    public function delete(int $id): bool
+    {
+        return $this->model->findOrFail($id)->delete();
+    }
+
+    public function search(string $query, int $perPage = 15): LengthAwarePaginator
+    {
+        return $this->model->where('published', true)
+            ->where(fn($q) => $q
+                ->where('title', 'LIKE', "%{$query}%")
+                ->orWhere('content', 'LIKE', "%{$query}%"))
+            ->orderByDesc('published_at')
+            ->paginate($perPage);
+    }
+}
+```
+
+## Binding and injection
+
+Register the binding in `AppServiceProvider` so Laravel's container wires it automatically:
+
+```php
+public function register(): void
+{
+    $this->app->bind(ArticleRepositoryInterface::class, ArticleRepository::class);
+}
+```
+
+Then inject it by interface, never by concrete class:
+
+```php
+class ArticleController extends Controller
+{
+    public function __construct(private ArticleRepositoryInterface $articles) {}
+
+    public function index(): View
+    {
+        return view('articles.index', [
+            'articles' => $this->articles->getPublished(12, ['author', 'tags']),
+        ]);
+    }
+
+    public function show(string $slug): View
+    {
+        return view('articles.show', [
+            'article' => $this->articles->findBySlug($slug, ['author', 'tags', 'comments.user']),
+        ]);
+    }
+}
+```
+
+## Adding caching without touching the controller
+
+The binding approach pays off here. Wrap the real repository in a caching decorator:
+
+```php
+class CachedArticleRepository implements ArticleRepositoryInterface
+{
+    private const TTL = 3600;
+
+    public function __construct(
+        private ArticleRepositoryInterface $inner,
+        private CacheRepository $cache
+    ) {}
+
+    public function findBySlug(string $slug, array $with = []): Article
+    {
+        return $this->cache->remember("article.{$slug}", self::TTL, fn() =>
+            $this->inner->findBySlug($slug, $with)
+        );
+    }
+
+    // delegate other methods to $this->inner
+}
+```
+
+Swap the binding in `AppServiceProvider` and every controller using the interface gets the cached version. No controller code changes.
+
+## Testing
+
+```php
+class ArticleRepositoryTest extends TestCase
+{
+    use RefreshDatabase;
+
+    private ArticleRepository $repo;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->repo = new ArticleRepository(new Article());
+    }
+
+    public function test_published_articles_are_returned_in_date_order(): void
+    {
+        $user = User::factory()->create();
+        Article::factory()->count(3)->published()->create(['author_id' => $user->id]);
+        Article::factory()->count(2)->create(['published' => false, 'author_id' => $user->id]);
+
+        $result = $this->repo->getPublished();
+
+        $this->assertCount(3, $result);
+        $this->assertTrue($result->every(fn($a) => $a->published));
+    }
+}
+```
+
+The pattern earns its complexity when the test above is easy to write and the caching decorator adds zero lines to your controller. That's the measure.
+
+## References
+
+- [Laravel: Service Container](https://laravel.com/docs/container)
+- [Laravel: Eloquent ORM](https://laravel.com/docs/eloquent)

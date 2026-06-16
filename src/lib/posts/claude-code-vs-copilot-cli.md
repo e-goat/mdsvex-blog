@@ -1,0 +1,66 @@
+---
+layout: article
+title: 'Epic duel: Claude Code vs GitHub Copilot CLI'
+description: I assumed Copilot CLI was a shell command suggester. It isn't anymore and after using both seriously, Copilot has some real edges worth talking about.
+date: '2026-04-15'
+tags: ['AI Tools', 'Claude Code', 'GitHub Copilot', 'Developer Productivity', 'CLI']
+---
+
+## I had Copilot CLI wrong
+
+My first impression of GitHub Copilot CLI stuck longer than it should have. I filed it as a shell command lookup tool useful for forgetting `tar` flags, not useful for real work. That was accurate for a while. It isn't anymore.
+
+Copilot CLI has evolved into a full agentic coding tool. It reads your files, edits code, runs commands, navigates your repo, and handles multi-step tasks. The gap I assumed existed between it and Claude Code is much smaller than I thought and in some areas, Copilot has a genuine lead.
+
+## What Copilot CLI actually does now
+
+The interaction model is no longer "describe a shell command, get a shell command." You give it a goal:
+
+```bash
+gh copilot "the user signup flow is throwing a 422 on email validation find the issue and fix it"
+```
+
+It reads the relevant files, traces the validation logic, identifies the mismatch, proposes the fix, and applies it. This is agentic behavior multi-step, context-aware, and capable of working across files.
+
+The `explain` and `suggest` modes are still there for quick lookups, but they're the lightweight end of what Copilot CLI now offers, not the whole product.
+
+## Where Copilot has a real edge: GitHub nativity
+
+This is the biggest advantage and it's not close. Copilot CLI understands the full GitHub context your project lives in not just the code on disk.
+
+It can read and reason about open PRs, issues, Actions workflow runs, and CI failures without you describing any of it:
+
+```bash
+gh copilot "CI is failing on the main branch look at the failing workflow and fix whatever's broken"
+```
+
+It pulls the failing run, reads the logs, traces back to the source, and proposes a fix. Claude Code can do something similar with the right tools wired up, but it requires explicit setup. Copilot already knows the GitHub context because it was built inside that ecosystem.
+
+For teams running GitHub Actions heavily, this matters daily. Debugging a failing pipeline from the terminal without copy-pasting logs into a chat window is a qualitatively different experience.
+
+## Cost and access model
+
+Copilot CLI is included in a GitHub Copilot subscription which most teams working on GitHub already have. Claude Code bills separately per token consumed, and agentic sessions on large codebases with many tool calls add up noticeably.
+
+For individual power users, the cost difference is probably fine. For teams where five to ten engineers would use an agentic CLI daily, the billing model matters and Copilot wins cleanly.
+
+## Where Claude Code still leads
+
+Context window and codebase awareness on large repos: Claude Code is more aggressive about pulling in relevant files and maintaining coherent context across very long sessions. On repos with complex module graphs and a lot of implicit conventions, this shows.
+
+The `CLAUDE.md` file is also a meaningful feature with no direct Copilot equivalent yet. Being able to document your architecture, your conventions, and what to avoid and have the agent read that on every session is genuinely useful for teams with opinionated patterns.
+
+Copilot's answers also lean more conservative on ambiguous tasks. It will ask clarifying questions more often where Claude Code makes a judgment call and moves forward. Depending on the situation that's either a virtue or friction.
+
+## Which one I reach for
+
+For anything that touches GitHub directly PRs, issues, CI, Actions, branch state Copilot CLI is the natural tool. The integration isn't cosmetic; it's structural.
+
+For long, exploratory sessions on complex codebases where I want aggressive context pulling and minimal interruption, Claude Code still has a slight edge.
+
+But the framing I started with "Copilot is for shell commands, Claude Code is for real work" is wrong. Copilot CLI does real work now. It's a competitive agentic tool that happens to be deeply embedded in the platform most teams are already using, and that embeddedness is worth more than I gave it credit for.
+
+## References
+
+- [GitHub Copilot CLI documentation](https://docs.github.com/en/copilot/using-github-copilot/using-github-copilot-in-the-command-line)
+- [Claude Code documentation](https://docs.anthropic.com/en/docs/claude-code)

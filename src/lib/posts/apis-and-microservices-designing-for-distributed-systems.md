@@ -1,0 +1,75 @@
+---
+layout: article
+title: 'APIs and service boundaries: getting the split right'
+description: The hardest part of microservices isn't the technology. It's knowing where to draw the line and what you've committed to once you do.
+date: '2025-07-28'
+tags: ['API Design', 'Microservices', 'Distributed Systems', 'Event-Driven', 'Architecture']
+---
+
+## The split is a promise
+
+Every service boundary is a contract. Once you split Order from Inventory, you've committed to: versioning the API between them, handling partial failures across the boundary, running two deployment pipelines, and debugging failures that span both systems.
+
+That's not an argument against splitting it's an argument for splitting intentionally. A boundary that maps to a team, a data domain, and a deployment cadence is a real boundary. A boundary drawn to "decouple things" without a concrete driver usually isn't.
+
+The test: can you describe the service's responsibility in one sentence without using "and"? If not, it's probably not a service yet.
+
+## API design: contracts that hold
+
+An API is easier to use correctly if the design makes wrong usage awkward:
+
+- Resource names are nouns, operations are HTTP methods `POST /payments`, not `POST /createPayment`
+- Error shapes are consistent the same structure whether the error is validation, auth, or server
+- Pagination is explicit and consistent across endpoints
+- Versioning has a documented policy before you need it
+
+Idempotency matters everywhere writes can retry:
+
+```
+POST /v1/payments
+Idempotency-Key: 9c7b6f2a-2b7d-4b7f-8e44-2f6a4b70c0a1
+Content-Type: application/json
+```
+
+The idempotency key lets a client retry safely after a timeout. Without it, a payment timeout becomes either "did it process?" guesswork or a duplicate charge. This is a feature, and it should be in the spec from day one.
+
+## Distributed systems are optimistic
+
+Assume you will see partial failures. This isn't pessimism it's the correct mental model for any system with network calls.
+
+Timeouts and retries aren't optional. Every outbound call needs a timeout. Every idempotent operation should have a retry policy. Circuit breakers prevent cascading failures when a downstream dependency degrades. These are not advanced topics; they're the baseline.
+
+The harder problem is eventual consistency. When Order creates a record and fires an event that Inventory consumes asynchronously, there's a window where the two systems disagree. That window has a UX: what does the user see? Status indicators, reconciliation flows, and audit trails are product decisions that fall out of distributed architecture.
+
+## Events: decouple domains, not services
+
+Event-driven architecture works best as a domain integration mechanism not as a way to avoid service APIs entirely.
+
+Good use cases: audit trails, cross-domain fan-out, async processing that doesn't need to be synchronous. Bad use cases: request-response workflows that are sync in disguise (the caller immediately polls for the result).
+
+Schema drift kills event-driven systems. Every event is effectively a public API breaking changes break consumers silently. Use schema versioning, run compatibility checks in CI, and treat event contracts with the same discipline as HTTP APIs.
+
+## Make production understandable
+
+The hardest bugs in distributed systems are the ones that require state from three services to reconstruct. Structure logs to answer them:
+
+```json
+{
+    "timestamp": "2025-07-28T14:23:01Z",
+    "level": "error",
+    "trace_id": "abc123",
+    "service": "payment-service",
+    "user_id": "u_789",
+    "error": "downstream timeout",
+    "downstream": "fraud-check",
+    "duration_ms": 3001
+}
+```
+
+Trace IDs that flow across service boundaries transform a distributed debugging session from guesswork into a timeline. Add them from the first day of the project.
+
+## References
+
+- [RFC 9110: HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110)
+- [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [CloudEvents Specification](https://cloudevents.io/)

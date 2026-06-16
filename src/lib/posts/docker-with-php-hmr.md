@@ -1,0 +1,236 @@
+---
+layout: article
+title: Docker with PHP and Vite HMR
+description: How to containerize a Laravel app with Docker, enable Vite's HMR, and create a seamless local development workflow that doesn't fight you.
+date: '2025-06-21'
+tags: ['Docker', 'Laravel', 'Vite', 'HMR', 'Development Environment', 'DevOps']
+---
+
+## What we're building
+
+Modern Laravel apps benefit from Vite for frontend bundling and Docker for isolated development environments. The challenge is making Vite's Hot Module Reloading work across the container boundary the browser connects to a Vite dev server running inside Docker, and without the right configuration, the WebSocket connection that powers HMR won't reach it.
+
+This guide sets up:
+
+- PHP 8.3 (Apache) for Laravel
+- Node.js 20 in a separate container for Vite
+- MariaDB and phpMyAdmin
+- HMR that actually works on `localhost:5173`
+
+## Project structure
+
+```
+/yourapp
+├── docker
+│   ├── node
+│   │   └── Dockerfile
+│   └── php
+│       ├── Dockerfile
+│       ├── php.ini
+│       └── opcache.ini
+├── docker-compose.yml
+├── package.json
+└── vite.config.js
+```
+
+## Node container for Vite
+
+A lightweight `node:20` image runs the Vite dev server:
+
+```
+FROM node:20
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+CMD ["npm", "run", "dev"]
+```
+
+## PHP (Laravel) container
+
+```
+FROM php:8.3-rc-apache-buster AS base
+
+ENV DEBIAN_FRONTEND noninteractive
+ENV TZ=UTC
+ENV npm_config_cache=/tmp/.npm
+
+ARG WWWUSER
+ARG NODE_VERSION=20
+
+RUN apt-get update && apt-get install -y \
+    libfreetype6-dev \
+    libjpeg62-turbo-dev \
+    libpng-dev \
+    libtiff-dev \
+    libonig-dev \
+    libzip-dev \
+    libicu-dev \
+    unzip \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) \
+        opcache mysqli pdo_mysql gd bcmath zip intl exif \
+    && curl -sL https://deb.nodesource.com/setup_${NODE_VERSION}.x | bash - \
+    && apt-get install -y nodejs \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN sed -i 's#/var/www/html#/var/www/html/public#g' /etc/apache2/sites-available/000-default.conf
+
+COPY ./docker/php/php.ini /usr/local/etc/php/
+COPY ./docker/php/opcache.ini /usr/local/etc/php/conf.d/20-opcache.ini
+
+RUN a2enmod rewrite
+
+FROM base AS builder
+
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
+    && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
+    && php -r "unlink('composer-setup.php');"
+
+WORKDIR /var/www/html
+
+ARG WWWUSER
+RUN usermod -u ${WWWUSER} www-data \
+    && groupmod -g ${WWWUSER} www-data
+
+COPY --chown=www-data:www-data . .
+USER www-data
+```
+
+## Docker Compose
+
+```yml
+services:
+    yourapp.develop:
+        build:
+            context: .
+            dockerfile: ./docker/php/Dockerfile
+            args:
+                WWWUSER: ${WWWUSER}
+        ports:
+            - '${APP_PORT:-80}:80'
+        container_name: yourapp-app
+        environment:
+            DOCKER_BUILDKIT: 1
+        volumes:
+            - '.:/var/www/html'
+            - './docker/php/php.ini:/usr/local/etc/php/php.ini'
+            - './docker/php/opcache.ini:/usr/local/etc/php/conf.d/docker-php-ext-opcache.ini'
+        networks:
+            - yourapp
+        extra_hosts:
+            - 'host.docker.internal:host-gateway'
+        depends_on:
+            - db
+
+    db:
+        image: mariadb:10.6.18
+        ports:
+            - '${FORWARD_DB_PORT:-3306}:3306'
+        environment:
+            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_DATABASE: '${DB_DATABASE}'
+            MYSQL_USER: '${DB_USERNAME}'
+            MYSQL_PASSWORD: '${DB_PASSWORD}'
+        volumes:
+            - 'yourappdb:/var/lib/mysql'
+        networks:
+            - yourapp
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        container_name: phpmyadmin
+        environment:
+            PMA_HOST: db
+            PMA_PORT: 3306
+            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+        ports:
+            - '8080:80'
+        networks:
+            - yourapp
+
+    node:
+        build:
+            context: .
+            dockerfile: ./docker/node/Dockerfile
+        volumes:
+            - .:/app
+        working_dir: /app
+        ports:
+            - '5173:5173'
+        command: ['npm', 'run', 'dev']
+
+networks:
+    yourapp:
+        driver: bridge
+
+volumes:
+    yourappdb:
+        driver: local
+```
+
+## Running everything
+
+1. Copy `.env.example` to `.env` and configure DB credentials.
+2. Run:
+
+```bash
+docker compose up --build
+```
+
+Laravel is at `localhost`, Vite HMR at `localhost:5173`, phpMyAdmin at `localhost:8080`.
+
+## Vite configuration for HMR inside Docker
+
+The two things Vite needs to work across the container boundary: bind to `0.0.0.0` so the container accepts connections from outside, and configure the HMR host to `localhost` so the browser's WebSocket connects to your host machine, not the container's internal hostname.
+
+```js
+import { defineConfig } from 'vite';
+import laravel from 'laravel-vite-plugin';
+
+export default defineConfig({
+    server: {
+        host: '0.0.0.0',
+        port: 5173,
+        strictPort: true,
+        hmr: {
+            host: 'localhost',
+            port: 5173,
+            protocol: 'ws'
+        }
+    },
+    plugins: [
+        laravel({
+            input: ['resources/css/app.css', 'resources/js/app.js'],
+            refresh: true
+        })
+    ],
+    resolve: {
+        alias: {
+            '@': '/resources/js'
+        }
+    }
+});
+```
+
+And in `.env`:
+
+```
+APP_URL=http://localhost
+VITE_DEV_SERVER_URL=http://localhost:5173
+```
+
+With this in place, Blade views served by Laravel load JavaScript from the Vite dev server, and changes to frontend files appear in the browser without a full reload.
+
+## Final notes
+
+- Laravel templates must use `@vite` directives, not manual `<script>` tags, for HMR injection to work.
+- Set `APP_ENV=local` and `APP_DEBUG=true` in `.env` for development.
+- The Node container only handles JS/CSS it has no knowledge of PHP routes or application state.
+
+## References
+
+- [Docker Compose documentation](https://docs.docker.com/compose/)
+- [Vite: Server options (HMR)](https://vite.dev/config/server-options)
+- [Laravel Vite plugin documentation](https://laravel.com/docs/vite)
