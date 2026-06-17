@@ -1,6 +1,6 @@
 import { mdsvex } from 'mdsvex';
 import tailwindcss from '@tailwindcss/vite';
-import adapter from '@sveltejs/adapter-auto';
+import adapter from "@deno/svelte-adapter";
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 import { join } from 'node:path';
@@ -48,6 +48,6 @@ export default defineConfig({
                 })
             ],
             extensions: ['.svelte', '.md']
-        })
+        }),
     ]
 });
