@@ -3,10 +3,10 @@ import tailwindcss from '@tailwindcss/vite';
 import adapter from '@sveltejs/adapter-auto';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
-import { join } from 'path';
+import { join } from 'node:path';
 import type { Root } from 'mdast';
 import type { Post } from './src/types';
-import path from 'path';
+import path from 'node:path';
 import { uniqueString } from './src/lib/helpers';
 
 const layoutPath = join(__dirname, './src/lib/layouts/');
