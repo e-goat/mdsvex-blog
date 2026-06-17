@@ -1,7 +1,7 @@
 <script lang="ts">
-    import { resolve } from '$app/paths';
+    import About from '../lib/docs/about.md'
 </script>
 
-Hello, Im martin and this is my personal <strong
-    ><a data-sveltekit-preload-data="tap" href={resolve('/blog')}>blog</a></strong
->
+<div class="prose dark:prose-invert">
+    <About />
+</div>

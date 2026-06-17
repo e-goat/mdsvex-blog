@@ -1,0 +1,29 @@
+---
+layout: article
+---
+
+<script lang="ts">
+    import portrait from '$lib/assets/github-profile.jpeg'
+</script>
+
+I'm Martin Duchev, a full-stack developer focused on building reliable, maintainable web applications. My approach prioritizes clean architecture, practical solutions, and code that other developers can work with confidently.
+
+<div class="flex items-center justify-center">
+    <img alt="The project logo" src={portrait} class="rounded-full border p-2" />
+</div>
+
+### Tech Stack
+
+- **Backend**: PHP, Node.js, Python, Laravel, Express, Next.js
+- **Frontend**: JavaScript, Vue, React, Svelte, SvelteKit, Tailwind CSS
+- **DevOps**: Docker, Git, Jenkins, Octopus Deploy, Vercel, Netlify, DigitalOcean
+- **Databases**: PostgreSQL, MySQL
+
+### Experience
+
+- Designed and shipped production applications across the full stack
+- Built RESTful APIs and integrated third-party services
+- Containerized development and deployment workflows with Docker
+- Improved database performance through query optimization and schema design
+- Comfortable navigating and refactoring legacy codebases
+- Effective in both synchronous and async team collaboration

@@ -1,7 +1,13 @@
 <script lang="ts">
-    let { children } = $props();
+    let { children, title, date, description } = $props();
 </script>
 
-<article class="max-w-5xl px-4 prose dark:prose-invert">
+<article class="prose dark:prose-invert antialiased">
+    <div>
+        <h1>{title}</h1>
+        <div>{description}</div>
+        <div class="text-sm italic">{date}</div>
+    </div>
+
     {@render children()}
 </article>

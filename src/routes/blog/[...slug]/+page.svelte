@@ -7,7 +7,5 @@
     setContext('data', () => data);
 </script>
 
-<article class="prose dark:prose-invert max-w-5xl mx-auto px-4">
-    <nav class="p-6"><h1>{data.metadata.title}</h1></nav>
-    <data.post />
-</article>
+<!-- Check '$lib/layouts/PostLayout.svelte' if you want to edit this component -->
+<data.post title={data.metadata.title} date={data.metadata.date} description={data.metadata.description}/>

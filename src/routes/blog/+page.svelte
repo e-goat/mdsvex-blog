@@ -8,13 +8,17 @@
     setContext('data', () => data);
 </script>
 
-<div class="flex flex-col items-center">
-    {#each data.posts as post (post.data.id)}
-        <button
-            onclick={() => goto(resolve(`/blog/${post.data.slug}`))}
-            class="flex flex-col hover:underline hover:cursor-pointer m-2 p-4 bg-amber-500/25 rounded-lg"
-        >
-            <span>{post.data.title}</span>
-        </button>
-    {/each}
-</div>
+<section>
+    <ul>
+        {#each data.posts as post (post.data.id)}
+            <li>
+                <button
+                    onclick={() => goto(resolve(`/blog/${post.data.slug}`))}
+                    class="hover:underline hover:cursor-pointer"
+                >
+                    <span>{post.data.title}</span>
+                </button>
+            </li>
+        {/each}
+    </ul>
+</section>

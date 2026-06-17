@@ -5,20 +5,11 @@ import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 import { join } from 'path';
 import type { Root } from 'mdast';
-import type { VFile } from 'vfile';
 import type { Post } from './src/types';
+import path from 'path';
+import { uniqueString } from './src/lib/helpers';
 
 const layoutPath = join(__dirname, './src/lib/layouts/');
-
-function createID(length: number): string {
-    let result = '';
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    const charactersLength = characters.length;
-    for ( let i = 0; i < length; i++ ) {
-        result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-    return result;
-}
 
 export default defineConfig({
     plugins: [
@@ -37,9 +28,18 @@ export default defineConfig({
                     extensions: ['.md'],
                     smartypants: true,
                     remarkPlugins: [
-                        () => (tree: Root, file: VFile): void => {
-                            const data = file.data.fm as Post;
-                            data.id = createID(5);
+                        () => (tree: Root, file: any): void => {
+                            if (!file.filename) {
+                                return
+                            }
+                            if (!file.filename.includes(path.join('src', 'lib', 'posts'))) {
+                                return;
+                            } else {
+                                const data = file.data.fm as Post;
+                                data.id = uniqueString(6);
+                                data.slug = file.filename.split('/').pop()?.replace('.md', '') || '';
+                                return;
+                            }
                         }
                     ],
                     layout: {
