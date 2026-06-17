@@ -2,6 +2,6 @@
     import About from '../lib/docs/about.md'
 </script>
 
-<div class="prose dark:prose-invert">
+<div class="prose">
     <About />
 </div>
