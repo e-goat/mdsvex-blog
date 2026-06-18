@@ -1,7 +1,7 @@
 ---
 layout: article
 title: 'DigitalOcean Droplets: a VPS is still often the right answer'
-thumb: 'src/lib/assets/post-images/thumbs/do_droplets.png'
+thumb: 'post-images/thumbs/do_droplets.png'
 description: Not everything needs Kubernetes or a managed PaaS. Sometimes a $6/month Droplet and a bit of setup is the fastest path to a running, maintainable production environment.
 date: '2026-02-10'
 tags: ['DigitalOcean', 'VPS', 'Deployment', 'Infrastructure', 'DevOps', 'Linux']

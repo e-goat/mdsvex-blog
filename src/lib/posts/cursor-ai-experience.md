@@ -1,7 +1,7 @@
 ---
 layout: article
 title: Six months with Cursor - what actually stuck
-thumb: 'src/lib/assets/post-images/thumbs/cursor_ai.webp'
+thumb: 'post-images/thumbs/cursor_ai.webp'
 description: An honest look at what changed in my workflow after using Cursor daily and where the hype oversells it.
 date: '2025-08-19'
 tags: ['Cursor AI', 'AI Tools', 'Developer Productivity', 'Code Editor', 'Pair Programming']

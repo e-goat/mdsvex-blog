@@ -1,7 +1,7 @@
 ---
 layout: article
 title: 'Multiflexing: managing multiple agents in a terminal'
-thumb: 'src/lib/assets/post-images/thumbs/tmux.png'
+thumb: 'post-images/thumbs/tmux.png'
 description: Terminal multiplexing was already useful. With several AI agents running tasks concurrently across different repos, it's become essential to how I work.
 date: '2026-05-08'
 tags: ['terminal']

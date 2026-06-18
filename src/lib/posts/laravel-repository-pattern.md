@@ -1,7 +1,7 @@
 ---
 layout: article
 title: The Repository Pattern in Laravel - when it earns its complexity
-thumb: 'src/lib/assets/post-images/thumbs/repo_pattern.png'
+thumb: 'post-images/thumbs/repo_pattern.png'
 description: How to implement the Repository Pattern in Laravel and, more importantly, when the abstraction is worth adding.
 date: '2025-06-02'
 tags:

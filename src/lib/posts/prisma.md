@@ -1,7 +1,7 @@
 ---
 layout: article
 title: 'Prisma: type-safe queries with real migration costs'
-thumb: 'src/lib/assets/post-images/thumbs/prisma.png'
+thumb: 'post-images/thumbs/prisma.png'
 description: Prisma's schema-first approach and generated client are genuinely good. The migration workflow, connection model, and production gotchas deserve more attention before you commit.
 date: '2026-03-14'
 tags: ['TypeScript', 'Database', 'PostgreSQL']

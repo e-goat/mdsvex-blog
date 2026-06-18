@@ -1,7 +1,7 @@
 ---
 layout: article
 title: Docker with PHP and Vite HMR
-thumb: 'src/lib/assets/post-images/thumbs/docker-php.png'
+thumb: 'post-images/thumbs/docker-php.png'
 description: How to containerize a Laravel app with Docker, enable Vite's HMR, and create a seamless local development workflow that doesn't fight you.
 date: '2025-06-21'
 tags: ['Docker', 'Laravel', 'Vite', 'HMR', 'Development Environment', 'DevOps']
