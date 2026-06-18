@@ -1,6 +1,7 @@
 ---
 layout: article
 title: 'Epic duel: Claude Code vs GitHub Copilot CLI'
+thumb: 'src/lib/assets/post-images/thumbs/claude_copilot.jpg'
 description: I assumed Copilot CLI was a shell command suggester. It isn't anymore and after using both seriously, Copilot has some real edges worth talking about.
 date: '2026-04-15'
 tags: ['AI Tools', 'Claude Code', 'GitHub Copilot', 'Developer Productivity', 'CLI']

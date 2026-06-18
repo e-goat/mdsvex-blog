@@ -1,6 +1,7 @@
 ---
 layout: article
 title: 'SvelteKit made me rethink what a framework should feel like'
+thumb: 'src/lib/assets/post-images/thumbs/svelte-logo.png'
 description: Coming from React and Next.js, what surprised me about SvelteKit the reactivity model, the routing conventions, and the one thing I still reach for React for.
 date: '2026-04-02'
 tags: ['SvelteKit', 'Svelte', 'Frontend', 'JavaScript', 'TypeScript', 'Web Development']

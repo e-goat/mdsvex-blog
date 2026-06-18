@@ -2,6 +2,7 @@ import type { ComponentType } from 'svelte';
 
 export type Post = {
     id: string;
+    thumb: string;
     slug: string;
     title: string;
     description: string;

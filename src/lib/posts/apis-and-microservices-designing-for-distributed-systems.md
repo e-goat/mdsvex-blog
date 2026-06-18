@@ -1,6 +1,7 @@
 ---
 layout: article
 title: 'APIs and service boundaries: getting the split right'
+thumb: 'src/lib/assets/post-images/thumbs/apis_services.png'
 description: The hardest part of microservices isn't the technology. It's knowing where to draw the line and what you've committed to once you do.
 date: '2025-07-28'
 tags: ['API Design', 'Microservices', 'Distributed Systems', 'Event-Driven', 'Architecture']
