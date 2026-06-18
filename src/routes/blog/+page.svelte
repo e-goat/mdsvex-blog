@@ -9,8 +9,8 @@
 </script>
 
 <section>
-    {#each data.posts as post (post.data.id)}
-        {const item = post.data}
+    {#each data.posts as post (post.id)}
+        {const item = post}
         {const destructoredDate = item.date.split('-')}
         <button
             onclick={() => goto(resolve(`/blog/${item.slug}`))}
@@ -36,7 +36,6 @@
                         <div class="p-1 text-xs rounded-lg shadow-sm text-nowrap text- bg-blue-400/10" data-tag-id={index}>{tag}</div>
                     {/each}
                 </span>
-                {console.log(item.tags)}
             </div>
         </button>
     {/each}

@@ -8,13 +8,11 @@ export const load: PageLoad = async () => {
         const resolved: any = await resolver();
         const data: Post = resolved.metadata;
 
-        return {
-            data
-        };
+        return data;
     });
 
     const posts = await Promise.all(postPromises);
-    posts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+    posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
     return {
         posts
