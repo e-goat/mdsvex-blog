@@ -6,11 +6,10 @@ layout: article
     import portrait from '$lib/assets/github-profile.jpeg'
 </script>
 
-I'm Martin Duchev, a full-stack developer focused on building reliable, maintainable web applications. My approach prioritizes clean architecture, practical solutions, and code that other developers can work with confidently.
-
 <div class="flex items-center justify-center">
     <img alt="The project logo" src={portrait} class="rounded-full border p-2" />
 </div>
+Hi, my name is Martin Duchev and I love to focused on building reliable, maintainable web applications. My approach prioritizes clean architecture, practical solutions, and code that other developers can work with confidently.
 
 ### Tech Stack
 
