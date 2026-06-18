@@ -8,4 +8,8 @@
 </script>
 
 <!-- Check '$lib/layouts/PostLayout.svelte' if you want to edit this component -->
-<data.post title={data.metadata.title} date={data.metadata.date} description={data.metadata.description}/>
+<data.post
+    title={data.metadata.title}
+    date={data.metadata.date}
+    description={data.metadata.description}
+/>

@@ -1,6 +1,6 @@
 import { mdsvex } from 'mdsvex';
 import tailwindcss from '@tailwindcss/vite';
-import adapter from "@deno/svelte-adapter";
+import adapter from '@deno/svelte-adapter';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 import { join } from 'node:path';
@@ -28,19 +28,21 @@ export default defineConfig({
                     extensions: ['.md'],
                     smartypants: true,
                     remarkPlugins: [
-                        () => (tree: Root, file: any): void => {
-                            if (!file.filename) {
-                                return
+                        () =>
+                            (tree: Root, file: any): void => {
+                                if (!file.filename) {
+                                    return;
+                                }
+                                if (!file.filename.includes(path.join('src', 'lib', 'posts'))) {
+                                    return;
+                                } else {
+                                    const data = file.data.fm as Post;
+                                    data.id = uniqueString(6);
+                                    data.slug =
+                                        file.filename.split('/').pop()?.replace('.md', '') || '';
+                                    return;
+                                }
                             }
-                            if (!file.filename.includes(path.join('src', 'lib', 'posts'))) {
-                                return;
-                            } else {
-                                const data = file.data.fm as Post;
-                                data.id = uniqueString(6);
-                                data.slug = file.filename.split('/').pop()?.replace('.md', '') || '';
-                                return;
-                            }
-                        }
                     ],
                     layout: {
                         article: layoutPath + 'PostLayout.svelte'
@@ -48,6 +50,6 @@ export default defineConfig({
                 })
             ],
             extensions: ['.svelte', '.md']
-        }),
+        })
     ]
 });
