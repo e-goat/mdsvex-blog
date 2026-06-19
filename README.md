@@ -12,12 +12,6 @@ You can think of it as the Svelte equivalent of MDX (which is used in the React 
 
 ---
 
-First of all you need [pnpm](https://pnpm.io/installation)
-
-```bash
-curl -fsSL https://get.pnpm.io/install.sh | sh -
-```
-
 Install the required dependencies:
 
 ```bash
