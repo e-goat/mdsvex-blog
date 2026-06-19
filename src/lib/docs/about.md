@@ -7,10 +7,10 @@ layout: article
 <div class="flex items-center justify-center">
     <img alt="The project logo" src={portrait} class="rounded-full border p-2" />
 </div>
+
 Hi, my name is Martin Duchev and I love to mess around with tech. Currently, I am focused on building reliable, maintainable web applications. My approach prioritizes clean architecture, practical solutions, and code that other developers can work with confidently. In short, code that lasts.
 
 # Tech Stack
-
 ## **Backend**
 1. **PHP**
 This is where I was forged as a developer. I'm not going to lie and say that I love it, but I've been using **Laravel** since **Laravel 5**.
