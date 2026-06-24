@@ -24,6 +24,12 @@
                     href={resolve('/blog')}>Blog</a
                 >
             </div>
+            <div>
+                <a
+                    class="header-item hover:bg-gray-400/10 p-4 rounded-2xl cursor-pointer"
+                    href={resolve('/projects')}>Projects</a
+                >
+            </div>
             <div
                 class="header-item hover:bg-gray-400/10 p-4 rounded-2xl text-gray-300 cursor-not-allowed"
             >

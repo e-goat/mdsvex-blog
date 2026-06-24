@@ -33,7 +33,12 @@
                 </span>
                 <span class="flex flex-wrap gap-2">
                     {#each item.tags as tag, index (tag)}
-                        <div class="p-1 text-xs rounded-lg shadow-sm text-nowrap text- bg-blue-400/10" data-tag-id={index}>{tag}</div>
+                        <div
+                            class="p-1 text-xs rounded-lg shadow-sm text-nowrap text- bg-blue-400/10"
+                            data-tag-id={index}
+                        >
+                            {tag}
+                        </div>
                     {/each}
                 </span>
             </div>
