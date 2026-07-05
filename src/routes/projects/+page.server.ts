@@ -10,7 +10,7 @@ interface CompanyDetails {
 export const load: PageServerLoad = async () => {
     const assetsPrefix = 'project-images';
     const data: Record<number, CompanyDetails> = {
-        1: {
+        5: {
             name: 'megaparts',
             url: 'https://megaparts.bg/',
             assets: [
@@ -28,7 +28,7 @@ export const load: PageServerLoad = async () => {
             ],
             description: 'Megabitak.bg is a popular Bulgarian online classifieds platform and marketplace. It connects buyers and sellers nationwide, allowing users to publish free ads for a wide variety of goods and services, including electronics, fashion, home goods, and real estate.'
         },
-        3: {
+        4: {
             name: 'Accelerated Answers',
             url: 'https://www.kantar.com/campaigns/accelerated-answers-pf',
             assets: [
@@ -36,7 +36,7 @@ export const load: PageServerLoad = async () => {
             ],
             description: 'Accelerated Answers is Kantar Profiles agile, "do-it-together" (D-I-T) and do-it-yourself (DIY) survey solution for custom market research. The platform enables businesses and marketers to build custom templates, launch quick-polling surveys across global markets, and access dynamic, AI-assisted reporting to collect high-quality consumer insights at maximum speed.'
         },
-        4: {
+        3: {
             name: 'uvel',
             url: 'https://uvel.bg/',
             assets: [
@@ -44,7 +44,7 @@ export const load: PageServerLoad = async () => {
             ],
             description: 'Uvel.bg is an established e-commerce platform specializing in high-quality jewelry and watches. The site features a curated selection of gold and silver pieces, luxury accessories, and stylish timepieces from renowned brands, focused on premium customer service and certified authenticity.'
         },
-        5: {
+        1: {
             name: 'kartichka qr',
             url: 'https://kartichkaqr.com/',
             assets: [
