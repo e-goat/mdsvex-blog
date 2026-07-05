@@ -5,16 +5,21 @@ layout: article
 <script lang="ts">
     import portrait from '$lib/assets/github-profile.jpeg'
 </script>
+
 <div class="flex items-center justify-center">
     <img alt="The project logo" src={portrait} class="rounded-full border p-2" />
 </div>
 
 Hi, my name is Martin Duchev and I love to mess around with tech. Currently, I am focused on building reliable, maintainable web applications. My approach prioritizes clean architecture, practical solutions, and code that other developers can work with confidently. In short, code that lasts.
 
+<br>
+<br>
+<br>
+<br>
+<hr>
+
 # Tech Stack
-
 ## **Backend**
-
 1. **PHP**
    This is where I was forged as a developer. I'm not going to lie and say that I love it, but I've been using **Laravel** since **Laravel 5**.
 2. **Node**
@@ -33,7 +38,6 @@ Hi, my name is Martin Duchev and I love to mess around with tech. Currently, I a
    Their team did a great job with features like Queries and Accelerate. The community is expanding quickly. In general, using [Prisma](https://www.prisma.io) is a pleasant experience, plus it's very well integrated with [Deno Deploy](https://deno.com/deploy).
 
 ## **Frontend**
-
 1. **JavaScript**
    The mighty, the one above them all.
 2. **React**
@@ -44,7 +48,6 @@ Hi, my name is Martin Duchev and I love to mess around with tech. Currently, I a
    This is my preferred styling tool.
 
 ## **AI Tools**
-
 1. **Copilot CLI**
 2. **Claude CLI**
 3. **Cursor**
@@ -53,7 +56,6 @@ Hi, my name is Martin Duchev and I love to mess around with tech. Currently, I a
    Currently a Zed user; I've used it extensively with Zed ACPs. Came for the AI integration, stayed for the ease of use and performance.
 
 ## **DevOps**
-
 1. Docker
 2. Jenkins
 3. Vercel
@@ -64,13 +66,13 @@ Hi, my name is Martin Duchev and I love to mess around with tech. Currently, I a
 ## **Databases**
 
 Mainly worked with relational databases.
-
 1. MySQL
 2. PostgreSQL
 
-# Experience
+<hr>
 
-1. Software Architecture - My interest in the matter grows more and more every day.
+# Experience
+1. **Software Architecture** - My interest in the matter grows more and more every day.
 2. Designed and shipped production applications from zero to hero.
 3. Built RESTful APIs and integrated third-party services.
 4. Containerized development and deployment workflows with Docker.

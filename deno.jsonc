@@ -1,0 +1,6 @@
+{
+  "deploy": {
+    "org": "e-goat",
+    "app": "mduchev"
+  }
+}
