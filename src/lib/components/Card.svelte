@@ -14,14 +14,14 @@
     } = $props();
 </script>
 
-<a href={url} target="_blank" rel="external noopener noreferrer" data-id={cardId} class="block p-4 rounded-xl shadow-lg border-1 cursor-pointer group hover:scale-102 transition-transform">
-    <div class="flex flex-col gap-4">
-        <div class="image-wrap w-full p-2">
-            <img src={`${assets[0]}`} alt="Project image" class="rounded-xl w-96 h-64 object-center shadow-sm transition-transform">
+<a href={url} target="_blank" rel="external noopener noreferrer" data-id={cardId} class="block py-2 rounded-xl shadow-lg border-1 border-t-1 border-r-3 hover:border-r-6 hover:border-t-2 cursor-pointer">
+    <div class="flex flex-col gap-6 mx-4 my-2">
+        <div class="flex justify-center items-center image-wrap">
+            <img src={`${assets[0]}`} alt="Project image" class="rounded-xl w-96 h-64 object-cover shadow-sm">
         </div>
         <div id="info-wrap" class="p-2 flex flex-col text-start text-wrap gap-4">
-            <p class="text-xl text-center capitalize font-bold">{title}</p>
-            <p class="text-sm text-start wrap-break-word">{description}</p>
+            <p class="text-xl text-center uppercase underline font-bold">{title}</p>
+            <p class="text-xs text-start wrap-break-word">{description}</p>
         </div>
     </div>
 </a>

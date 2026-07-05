@@ -3,7 +3,7 @@
 </script>
 
 <header
-    class="fixed z-10 top-0 inset-x-0 bg-white/20 backdrop-blur-2xl border-b border-gray-200 py-2"
+    class="fixed z-10 top-0 inset-x-0 bg-white/20 backdrop-blur-2xl border-b-2 border-gray-200 py-2"
 >
     <div class="max-w-5xl mx-auto px-4">
         <div class="flex items-center w-full relative min-h-12">

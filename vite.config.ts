@@ -45,7 +45,8 @@ export default defineConfig({
                             }
                     ],
                     layout: {
-                        article: layoutPath + 'PostLayout.svelte'
+                        article: layoutPath + 'PostLayout.svelte',
+                        info: layoutPath + 'InfoLayout.svelte'
                     }
                 })
             ],

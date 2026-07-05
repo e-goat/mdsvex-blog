@@ -43,6 +43,14 @@ export const load: PageServerLoad = async () => {
                 `${assetsPrefix}/uvel-ss-1.png`
             ],
             description: 'Uvel.bg is an established e-commerce platform specializing in high-quality jewelry and watches. The site features a curated selection of gold and silver pieces, luxury accessories, and stylish timepieces from renowned brands, focused on premium customer service and certified authenticity.'
+        },
+        5: {
+            name: 'kartichka qr',
+            url: 'https://kartichkaqr.com/',
+            assets: [
+                `${assetsPrefix}/kartichka.png`
+            ],
+            description: 'Greeting card generator, which supports custom fonts, templates, audio recording.'
         }
     };
 
