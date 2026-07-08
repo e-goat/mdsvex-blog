@@ -26,7 +26,7 @@ export const load: PageServerLoad = async () => {
             assets: [
                 `${assetsPrefix}/megabitak-ss.png`
             ],
-            description: 'Megabitak.bg is a popular Bulgarian online classifieds platform and marketplace. It connects buyers and sellers nationwide, allowing users to publish free ads for a wide variety of goods and services, including electronics, fashion, home goods, and real estate.'
+            description: 'Megabitak.bg is a popular Bulgarian online classifieds platform and marketplace. It connects buyers and sellers nationwide, allowing users to publish free ads for a wide variety new and secondhand automotive spare parts'
         },
         4: {
             name: 'Accelerated Answers',
@@ -42,7 +42,7 @@ export const load: PageServerLoad = async () => {
             assets: [
                 `${assetsPrefix}/uvel-ss-1.png`
             ],
-            description: 'Uvel.bg is an established e-commerce platform specializing in high-quality jewelry and watches. The site features a curated selection of gold and silver pieces, luxury accessories, and stylish timepieces from renowned brands, focused on premium customer service and certified authenticity.'
+            description: 'Uvel.bg is an established e-commerce platform specializing in high-quality jewelry. The site features a curated selection of gold and silver pieces, luxury accessories, and stylish timepieces from renowned brands, focused on premium customer service and certified authenticity.'
         },
         1: {
             name: 'kartichka qr',
