@@ -4,7 +4,7 @@
     import ProjectsDoc from '$lib/docs/projects.md';
 
     const { data }: { data: PageData } = $props();
-    const projects = Object.values(data.projects);
+    const projects = $derived(Object.values(data.projects));
 </script>
 
 <section class="container">
