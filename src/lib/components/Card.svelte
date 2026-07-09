@@ -20,8 +20,8 @@
             <img src={`${assets[0]}`} alt="Project example" class="rounded-xl w-64 h-64 object-center shadow-sm">
         </div>
         <div id="info-wrap" class="p-2 flex flex-col text-start text-wrap gap-4">
-            <p class="text-xl text-center uppercase underline font-bold">{title}</p>
-            <p class="text-xs text-start wrap-break-word">{description}</p>
+            <p class="text-xl text-center uppercase underline font-bold dark:text-gray-50">{title}</p>
+            <p class="text-xs text-start wrap-break-word dark:text-gray-200">{description}</p>
         </div>
     </div>
 </a>
