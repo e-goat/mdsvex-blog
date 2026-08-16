@@ -4,10 +4,12 @@ layout: article
 
 <script lang="ts">
     import portrait from '$lib/assets/github-profile.jpeg'
+    import Social from '$lib/components/Social.svelte'
 </script>
 
-<div class="flex items-center justify-center">
+<div class="flex flex-col items-center justify-center">
     <img alt="The project logo" src={portrait} class="rounded-full border p-2" />
+    <Social/>
 </div>
 
 Hi, my name is Martin Duchev and I love to mess around with tech. Currently, I am focused on building reliable, maintainable web applications. My approach prioritizes clean architecture, practical solutions, and code that other developers can work with confidently. In short, code that lasts.
