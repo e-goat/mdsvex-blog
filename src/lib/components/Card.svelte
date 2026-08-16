@@ -19,21 +19,23 @@
     target="_blank"
     rel="external noopener noreferrer"
     data-id={cardId}
-    class="block py-2 rounded-xl cursor-pointer"
+    class="group block h-full rounded-3xl border border-slate-200/80 bg-white/80 p-3 shadow-sm transition hover:-translate-y-1 hover:shadow-lg dark:border-slate-700 dark:bg-slate-900/70"
 >
-    <div class="flex flex-col gap-2 mx-4 my-2">
-        <div class="flex justify-center items-center image-wrap">
+    <div class="flex h-full flex-col gap-4">
+        <div class="overflow-hidden rounded-2xl bg-slate-100 dark:bg-slate-800">
             <img
                 src={`${assets[0]}`}
                 alt="Project example"
-                class="rounded-xl w-64 h-64 object-center shadow-sm"
+                class="aspect-[16/10] w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
             />
         </div>
-        <div id="info-wrap" class="p-2 flex flex-col text-start text-wrap gap-4">
-            <p class="text-xl text-center uppercase underline font-bold dark:text-gray-50">
+        <div id="info-wrap" class="flex flex-1 flex-col gap-3 px-1 pb-1 text-start">
+            <p
+                class="text-lg font-semibold uppercase tracking-wide text-slate-950 dark:text-slate-50"
+            >
                 {title}
             </p>
-            <p class="text-xs text-start wrap-break-word dark:text-gray-200">{description}</p>
+            <p class="text-sm leading-6 text-slate-600 dark:text-slate-300">{description}</p>
         </div>
     </div>
 </a>

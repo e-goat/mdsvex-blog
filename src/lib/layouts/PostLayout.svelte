@@ -7,13 +7,15 @@
     function attachCopyButtons(node: HTMLElement) {
         const buttons = Array.from(node.querySelectorAll('pre')).map((pre) => {
             const code = pre.querySelector('code');
-            if (!code) return undefined;
+            const parent = pre.parentElement;
+            if (!code || !parent) return undefined;
 
-            pre.classList.add('code-shell');
-
+            const shell = document.createElement('div');
+            shell.className = 'code-shell';
             const host = document.createElement('div');
             host.className = 'copy-host';
-            pre.appendChild(host);
+            parent.insertBefore(shell, pre);
+            shell.append(pre, host);
 
             return mount(Copy, {
                 target: host,

@@ -7,9 +7,12 @@
     const projects = $derived(Object.values(data.projects));
 </script>
 
-<section class="container">
-    <ProjectsDoc />
-    <div class="grid md:grid-cols-2 gap-4">
+<section class="mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
+    <div class="mb-8">
+        <ProjectsDoc />
+    </div>
+
+    <div class="grid gap-6 sm:grid-cols-2">
         {#each projects as item, index (item)}
             <Card
                 cardId={index}

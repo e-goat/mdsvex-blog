@@ -41,11 +41,14 @@ code[class*='language-'] ::selection {
 }
 
 /* Code blocks */
-pre[class*='language-'] {
+.code-shell {
     position: relative;
+    margin: 0.75rem 0;
+}
+
+.code-shell > pre[class*='language-'] {
+    margin: 0;
     padding: 1em;
-    padding-top: 3rem;
-    margin: 0.5em 0;
     overflow: auto;
 }
 
