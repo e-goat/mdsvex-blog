@@ -3,7 +3,7 @@ export const themeState = $state({
 
     init() {
         if (typeof window !== 'undefined') {
-            if (!("theme" in localStorage)) localStorage.theme = "light";
+            if (!('theme' in localStorage)) localStorage.theme = 'light';
 
             const initialThemeLoad = localStorage.theme;
             document.documentElement.dataset.theme = initialThemeLoad;
@@ -11,11 +11,26 @@ export const themeState = $state({
         }
     },
 
-    toggle() {
+    toggle(color: string | undefined = undefined): void {
         const currentTheme = localStorage?.theme || this.type;
-        const themeAfterEvent = currentTheme === "dark" ? "light" : "dark";
+        let themeAfterEvent;
+
+        if (color !== undefined) {
+            themeAfterEvent = color;
+        } else {
+            themeAfterEvent = currentTheme === 'dark' ? 'light' : 'dark';
+        }
+
         localStorage.theme = themeAfterEvent;
         document.documentElement.dataset.theme = themeAfterEvent;
         this.type = themeAfterEvent;
+    },
+
+    getSysTheme() {
+        if (!window.matchMedia) {
+            return 'light';
+        }
+
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     }
 });

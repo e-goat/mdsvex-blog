@@ -1,6 +1,6 @@
 {
-  "deploy": {
-    "org": "e-goat",
-    "app": "mduchev"
-  }
+    "deploy": {
+        "org": "e-goat",
+        "app": "mduchev"
+    }
 }

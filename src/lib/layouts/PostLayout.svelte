@@ -2,7 +2,9 @@
     let { children, title, date, description } = $props();
 </script>
 
-<article class="prose dark:prose-invert antialiased w-full max-w-full overflow-x-hidden md:overflow-x-visible">
+<article
+    class="prose dark:prose-invert antialiased w-full max-w-full overflow-x-hidden md:overflow-x-visible"
+>
     <div class="mb-8">
         <h1 class="mb-2">{title}</h1>
         <div class="text-lg">{description}</div>

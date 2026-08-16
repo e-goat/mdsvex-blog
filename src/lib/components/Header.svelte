@@ -21,17 +21,23 @@
 
             <div>
                 <a
-                    class="header-item hover:bg-gray-400/10 dark:hover:bg-gray-400/30 p-4 rounded-2xl cursor-pointer"
-                    href={resolve('/blog')}>Blog</a
+                    class="header-item hover:bg-gray-400/10 dark:hover:bg-gray-400/30 p-4 rounded-2xl cursor-pointer transition-colors"
+                    href={resolve('/blog')}
                 >
+                    Blog
+                </a>
             </div>
             <div>
                 <a
-                    class="header-item hover:bg-gray-400/10 dark:hover:bg-gray-400/30 p-4 rounded-2xl cursor-pointer"
-                    href={resolve('/projects')}>Projects</a
+                    class="header-item hover:bg-gray-400/10 dark:hover:bg-gray-400/30 p-4 rounded-2xl cursor-pointer transition-colors"
+                    href={resolve('/projects')}
                 >
+                    Projects
+                </a>
             </div>
-            <div class="p-4 cursor-pointer">
+
+            <!-- Removed the styling here, ThemeSwitch handles it internally now -->
+            <div>
                 <ThemeSwitch />
             </div>
         </div>
