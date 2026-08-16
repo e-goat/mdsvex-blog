@@ -42,7 +42,9 @@ code[class*='language-'] ::selection {
 
 /* Code blocks */
 pre[class*='language-'] {
+    position: relative;
     padding: 1em;
+    padding-top: 3rem;
     margin: 0.5em 0;
     overflow: auto;
 }
@@ -251,6 +253,17 @@ div.code-toolbar > .toolbar.toolbar > .toolbar-item > span:focus {
 
 pre[id].linkable-line-numbers.linkable-line-numbers span.line-numbers-rows > span:hover:before {
     background-color: #8da1b918;
+}
+
+.code-shell .copy-host {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    z-index: 1;
+}
+
+.code-shell .copy-host button {
+    cursor: pointer;
 }
 
 /* overrides color-values for the Line Numbers plugin
