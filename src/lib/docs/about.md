@@ -8,7 +8,7 @@ layout: article
 </script>
 
 <div
-    class="not-prose mb-8 overflow-hidden rounded-3xl border-4 border-slate-600 bg-gradient-to-br from-slate-50 via-white to-cyan-50 p-6 shadow-sm dark:border-mist-400 dark:from-slate-950 dark:via-slate-900 dark:to-slate-800 md:p-8 lg:-mt-6 lg:mb-12 lg:p-10"
+    class="about-welcome not-prose -mt-4 mb-8 overflow-hidden rounded-3xl border-4 border-slate-600 bg-gradient-to-br from-slate-50 via-white to-cyan-50 p-6 shadow-sm dark:border-mist-400 dark:from-slate-950 dark:via-slate-900 dark:to-slate-800 md:-mt-6 md:p-8 lg:-mt-10 lg:mb-12 lg:p-10"
 >
     <div class="grid gap-6 md:grid-cols-[auto,1fr] md:items-center lg:grid-cols-[14rem,1fr] lg:gap-10">
         <img
@@ -33,6 +33,29 @@ layout: article
     </div>
 
 </div>
+
+<style>
+    @keyframes about-welcome {
+        from {
+            opacity: 0;
+            transform: translateY(0.75rem);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .about-welcome {
+        animation: about-welcome 650ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .about-welcome {
+            animation: none;
+        }
+    }
+</style>
 
 <div class="not-prose grid gap-10 lg:grid-cols-[0.9fr,1.1fr] lg:items-start">
     <section>

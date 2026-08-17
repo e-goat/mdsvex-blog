@@ -102,7 +102,7 @@
 </script>
 
 <article
-    class={`mx-auto w-full px-4 py-10 sm:px-6 lg:px-8 lg:py-14 ${date ? 'max-w-5xl' : 'max-w-4xl'}`}
+    class={`mx-auto w-full px-4 py-6 sm:px-6 lg:px-8 lg:py-8 ${date ? 'max-w-5xl' : 'max-w-4xl'}`}
 >
     <header class="mb-10 border-b border-slate-200/70 pb-8 dark:border-slate-700">
         {#if date}

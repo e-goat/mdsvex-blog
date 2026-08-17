@@ -77,7 +77,7 @@
                 Dark
             </button>
             <button
-                onclick={() => themeState.toggle(themeState.getSysTheme())}
+                onclick={() => themeState.toggle('system')}
                 class="rounded-xl px-4 py-2 text-left transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
             >
                 System
