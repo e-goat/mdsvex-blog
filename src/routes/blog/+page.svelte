@@ -3,6 +3,7 @@
     import { setContext } from 'svelte';
     import { resolve } from '$app/paths';
     import { goto } from '$app/navigation';
+    import { _ } from 'svelte-i18n';
 
     let { data }: PageProps = $props();
     setContext('data', () => data);
@@ -13,16 +14,15 @@
         <p
             class="mb-2 text-xs font-semibold uppercase tracking-[0.24em] text-cyan-700 dark:text-cyan-300"
         >
-            Blog
+            {$_('blog.label')}
         </p>
         <h1
             class="text-3xl font-semibold tracking-tight text-slate-950 dark:text-slate-50 sm:text-4xl"
         >
-            Personal thoughts and field notes
+            {$_('blog.title')}
         </h1>
         <p class="mt-4 text-base leading-8 text-slate-700 dark:text-slate-300">
-            This page collects my personal views on frameworks, tooling, architecture, and the
-            trade-offs I run into while building software.
+            {$_('blog.intro')}
         </p>
     </div>
 
@@ -46,12 +46,12 @@
                 <div class="flex flex-col items-center gap-2 md:items-start">
                     <span
                         class="text-center text-2xl font-medium text-slate-950 dark:text-amber-50 md:text-start"
-                        >{item.title}</span
+                        >{$_(`posts.${item.slug}.title`)}</span
                     >
                     <span
                         class="text-center text-sm leading-7 text-slate-600 dark:text-gray-100 md:text-start"
                     >
-                        {item.description}
+                        {$_(`posts.${item.slug}.description`)}
                     </span>
                     <span class="flex text-sm font-bold italic text-gray-600 dark:text-gray-50">
                         <span>{destructDate[destructDate.length - 1]}</span><!-- day -->

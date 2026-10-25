@@ -1,5 +1,6 @@
 <script lang="ts">
     import { onMount } from 'svelte';
+    import { _ } from 'svelte-i18n';
     import { themeState } from '$lib/theme.svelte';
 
     let open = $state(false);
@@ -40,7 +41,7 @@
         }}
         class="header-item flex items-center gap-1 rounded-2xl px-3 py-2 text-sm transition-colors hover:bg-gray-400/10 dark:hover:bg-gray-400/30 sm:px-4 sm:py-3"
     >
-        Theme
+        {$_('theme.label')}
         <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -68,19 +69,19 @@
                 onclick={() => themeState.toggle('light')}
                 class="rounded-xl px-4 py-2 text-left transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
             >
-                Light
+                {$_('theme.light')}
             </button>
             <button
                 onclick={() => themeState.toggle('dark')}
                 class="rounded-xl px-4 py-2 text-left transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
             >
-                Dark
+                {$_('theme.dark')}
             </button>
             <button
                 onclick={() => themeState.toggle('system')}
                 class="rounded-xl px-4 py-2 text-left transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
             >
-                System
+                {$_('theme.system')}
             </button>
         </div>
     </div>

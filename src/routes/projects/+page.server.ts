@@ -5,6 +5,7 @@ interface CompanyDetails {
     url: string;
     assets: string[];
     description: string;
+    translationKey: string;
 }
 
 export const load: PageServerLoad = async () => {
@@ -19,35 +20,40 @@ export const load: PageServerLoad = async () => {
                 `${assetsPrefix}/megaparts-ss-3.png`
             ],
             description:
-                'Megaparts.bg is one of the leading online platforms in Bulgaria for new and secondhand automotive spare parts. The website offers a vast, well-categorized inventory of parts sourced from disassembled vehicles, catering to car owners and mechanics looking for affordable repair solutions with reliable delivery.'
+                'Megaparts.bg is one of the leading online platforms in Bulgaria for new and secondhand automotive spare parts. The website offers a vast, well-categorized inventory of parts sourced from disassembled vehicles, catering to car owners and mechanics looking for affordable repair solutions with reliable delivery.',
+            translationKey: 'megaparts'
         },
         2: {
             name: 'megabitak',
             url: 'https://megabitak.bg/',
             assets: [`${assetsPrefix}/megabitak-ss.png`],
             description:
-                'Megabitak.bg is a popular Bulgarian online classifieds platform and marketplace. It connects buyers and sellers nationwide, allowing users to publish free ads for a wide variety new and secondhand automotive spare parts'
+                'Megabitak.bg is a popular Bulgarian online classifieds platform and marketplace. It connects buyers and sellers nationwide, allowing users to publish free ads for a wide variety new and secondhand automotive spare parts',
+            translationKey: 'megabitak'
         },
         4: {
             name: 'Accelerated Answers',
             url: 'https://www.kantar.com/campaigns/accelerated-answers-pf',
             assets: [`${assetsPrefix}/accelerated-answers.png`],
             description:
-                'Accelerated Answers is Kantar Profiles agile, "do-it-together" (D-I-T) and do-it-yourself (DIY) survey solution for custom market research. The platform enables businesses and marketers to build custom templates, launch quick-polling surveys across global markets, and access dynamic, AI-assisted reporting to collect high-quality consumer insights at maximum speed.'
+                'Accelerated Answers is Kantar Profiles agile, "do-it-together" (D-I-T) and do-it-yourself (DIY) survey solution for custom market research. The platform enables businesses and marketers to build custom templates, launch quick-polling surveys across global markets, and access dynamic, AI-assisted reporting to collect high-quality consumer insights at maximum speed.',
+            translationKey: 'acceleratedAnswers'
         },
         3: {
             name: 'uvel',
             url: 'https://uvel.bg/',
             assets: [`${assetsPrefix}/uvel-ss-1.png`],
             description:
-                'Uvel.bg is an established e-commerce platform specializing in high-quality jewelry. The site features a curated selection of gold and silver pieces, luxury accessories, and stylish timepieces from renowned brands, focused on premium customer service and certified authenticity.'
+                'Uvel.bg is an established e-commerce platform specializing in high-quality jewelry. The site features a curated selection of gold and silver pieces, luxury accessories, and stylish timepieces from renowned brands, focused on premium customer service and certified authenticity.',
+            translationKey: 'uvel'
         },
         1: {
             name: 'kartichka qr',
             url: 'https://kartichkaqr.com/',
             assets: [`${assetsPrefix}/kartichka.png`],
             description:
-                'Greeting card generator, which supports custom fonts, templates, audio recording.'
+                'Greeting card generator, which supports custom fonts, templates, audio recording.',
+            translationKey: 'kartichkaQr'
         }
     };
 

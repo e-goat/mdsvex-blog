@@ -1,6 +1,7 @@
 <script lang="ts">
     import { resolve } from '$app/paths';
     import ErrorLogo from '$lib/assets/404.gif';
+    import { _ } from 'svelte-i18n';
 </script>
 
 <section
@@ -14,32 +15,31 @@
             <p
                 class="text-xs font-semibold tracking-[0.24em] text-cyan-700 uppercase dark:text-cyan-300"
             >
-                Error 404
+                {$_('errors.notFoundLabel')}
             </p>
             <h1
                 id="missing-title"
                 class="mt-4 text-4xl font-semibold tracking-tight text-slate-950 dark:text-slate-50 sm:text-5xl"
             >
-                This page has wandered off.
+                {$_('errors.missingTitle')}
             </h1>
             <p
                 class="mx-auto mt-5 max-w-lg text-base leading-8 text-slate-600 dark:text-slate-300 lg:mx-0"
             >
-                The link may be outdated, or the page may have moved. Let’s get you back to a
-                familiar corner of the site.
+                {$_('errors.missingDescription')}
             </p>
             <div class="mt-8 flex flex-wrap justify-center gap-3 lg:justify-start">
                 <a
                     href={resolve('/')}
                     class="rounded-xl bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-slate-700 focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:outline-none dark:bg-cyan-300 dark:text-slate-950 dark:hover:bg-cyan-200 dark:focus-visible:ring-offset-slate-900"
                 >
-                    Back home
+                    {$_('errors.backHome')}
                 </a>
                 <a
                     href={resolve('/blog')}
                     class="rounded-xl border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700 transition-colors hover:border-slate-400 hover:bg-slate-100 focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:outline-none dark:border-slate-600 dark:text-slate-200 dark:hover:border-slate-500 dark:hover:bg-slate-800 dark:focus-visible:ring-offset-slate-900"
                 >
-                    Browse the blog
+                    {$_('errors.browseBlog')}
                 </a>
             </div>
         </div>

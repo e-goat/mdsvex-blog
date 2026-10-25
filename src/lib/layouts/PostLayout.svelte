@@ -1,5 +1,6 @@
 <script lang="ts">
     import { mount, unmount } from 'svelte';
+    import { _ } from 'svelte-i18n';
     import Copy from '$lib/components/Copy.svelte';
 
     let { children, title, date, description } = $props();
@@ -109,7 +110,7 @@
             <p
                 class="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyan-700 dark:text-cyan-300"
             >
-                Blog post
+                {$_('post.label')}
             </p>
         {/if}
         <h1
@@ -149,7 +150,7 @@
                         <p
                             class="mb-3 text-xs font-semibold tracking-[0.18em] text-slate-500 uppercase dark:text-slate-400"
                         >
-                            On this page
+                            {$_('post.onThisPage')}
                         </p>
                         <ul
                             class="max-h-[calc(100vh-8rem)] overflow-y-auto border-l border-slate-200 pb-1 dark:border-slate-700"

@@ -5,6 +5,7 @@ layout: article
 <script lang="ts">
     import portrait from '$lib/assets/github-profile.jpeg';
     import Social from '$lib/components/Social.svelte';
+    import { _ } from 'svelte-i18n';
 </script>
 
 <div
@@ -19,14 +20,13 @@ layout: article
 
         <div class="space-y-5 text-center md:text-left">
             <p class="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-700 dark:text-cyan-300">
-                About
+                {$_('about.label')}
             </p>
             <h1 class="text-3xl font-semibold tracking-tight text-slate-950 dark:text-slate-50 md:text-4xl">
                 Martin Duchev
             </h1>
             <p class="max-w-2xl text-base leading-8 text-slate-700 dark:text-slate-300 lg:text-lg">
-                I build reliable, maintainable web applications and care about clean architecture,
-                practical trade-offs, and code that another engineer can pick up without friction.
+                {$_('about.intro')}
             </p>
             <Social />
         </div>
@@ -60,20 +60,20 @@ layout: article
 <div class="not-prose grid gap-10 lg:grid-cols-[0.9fr,1.1fr] lg:items-start">
     <section>
         <p class="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyan-700 dark:text-cyan-300">
-            Focus
+            {$_('about.focus')}
         </p>
         <h2 class="text-2xl font-semibold tracking-tight text-slate-950 dark:text-slate-50">
-            Practical software that stays understandable.
+            {$_('about.focusTitle')}
         </h2>
         <div class="mt-6 space-y-4 border-l border-slate-200 pl-5 dark:border-slate-700">
             <p class="text-sm leading-7 text-slate-700 dark:text-slate-300">
-                Clean architecture over accidental complexity.
+                {$_('about.focusItems.architecture')}
             </p>
             <p class="text-sm leading-7 text-slate-700 dark:text-slate-300">
-                Practical implementations that are easy to maintain.
+                {$_('about.focusItems.implementations')}
             </p>
             <p class="text-sm leading-7 text-slate-700 dark:text-slate-300">
-                Interfaces that stay usable on desktop and mobile.
+                {$_('about.focusItems.interfaces')}
             </p>
         </div>
     </section>
@@ -81,12 +81,12 @@ layout: article
     <div class="grid gap-8">
         <section class="border-t border-slate-200 pt-6 dark:border-slate-700">
             <h2 class="text-xl font-semibold tracking-tight text-slate-950 dark:text-slate-50">
-                Stack
+                {$_('about.stack')}
             </h2>
             <dl class="mt-5 grid gap-x-8 gap-y-5 sm:grid-cols-2">
                 <div>
                     <dt class="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
-                        Backend
+                        {$_('about.backend')}
                     </dt>
                     <dd class="mt-2 text-sm leading-7 text-slate-700 dark:text-slate-300">
                         PHP, Node, Deno, Bun, Python, Laravel, Prisma, Drizzle ORM
@@ -94,7 +94,7 @@ layout: article
                 </div>
                 <div>
                     <dt class="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
-                        Frontend
+                        {$_('about.frontend')}
                     </dt>
                     <dd class="mt-2 text-sm leading-7 text-slate-700 dark:text-slate-300">
                         JavaScript, React, Svelte/SvelteKit, Tailwind CSS
@@ -102,7 +102,7 @@ layout: article
                 </div>
                 <div>
                     <dt class="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
-                        AI tools
+                        {$_('about.aiTools')}
                     </dt>
                     <dd class="mt-2 text-sm leading-7 text-slate-700 dark:text-slate-300">
                         Copilot CLI, Claude CLI, Cursor, Zed
@@ -110,7 +110,7 @@ layout: article
                 </div>
                 <div>
                     <dt class="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
-                        Infrastructure
+                        {$_('about.infrastructure')}
                     </dt>
                     <dd class="mt-2 text-sm leading-7 text-slate-700 dark:text-slate-300">
                         Docker, Jenkins, Vercel, Netlify, Deno Deploy, DigitalOcean
@@ -121,13 +121,13 @@ layout: article
 
         <section class="border-t border-slate-200 pt-6 dark:border-slate-700">
             <h2 class="text-xl font-semibold tracking-tight text-slate-950 dark:text-slate-50">
-                Experience
+                {$_('about.experience')}
             </h2>
             <ul class="mt-5 grid gap-3 text-sm leading-7 text-slate-700 dark:text-slate-300 sm:grid-cols-2">
-                <li>Designed and shipped production applications end to end.</li>
-                <li>Built REST APIs and integrated third-party services.</li>
-                <li>Improved database performance through query and schema work.</li>
-                <li>Refactored legacy codebases without overengineering the fix.</li>
+                <li>{$_('about.experienceItems.production')}</li>
+                <li>{$_('about.experienceItems.apis')}</li>
+                <li>{$_('about.experienceItems.database')}</li>
+                <li>{$_('about.experienceItems.legacy')}</li>
             </ul>
         </section>
     </div>

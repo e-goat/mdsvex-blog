@@ -2,6 +2,8 @@
     import { onMount } from 'svelte';
     import { resolve } from '$app/paths';
     import ThemeSwitch from './ThemeSwitch.svelte';
+    import LanguageSwitch from './LanguageSwitch.svelte';
+    import { _ } from 'svelte-i18n';
 
     let mobileMenuOpen = $state(false);
     let root: HTMLElement | null = null;
@@ -43,10 +45,11 @@
 
             <div class="flex items-center gap-2 sm:hidden">
                 <ThemeSwitch />
+                <LanguageSwitch />
                 <button
                     type="button"
                     aria-expanded={mobileMenuOpen}
-                    aria-label="Toggle navigation"
+                    aria-label={$_('nav.toggle')}
                     onclick={() => {
                         mobileMenuOpen = !mobileMenuOpen;
                     }}
@@ -78,15 +81,16 @@
                     class="header-item whitespace-nowrap rounded-2xl px-4 py-3 transition-colors hover:bg-gray-400/10 dark:hover:bg-gray-400/30"
                     href={resolve('/blog')}
                 >
-                    Blog
+                    {$_('nav.blog')}
                 </a>
                 <a
                     class="header-item whitespace-nowrap rounded-2xl px-4 py-3 transition-colors hover:bg-gray-400/10 dark:hover:bg-gray-400/30"
                     href={resolve('/projects')}
                 >
-                    Projects
+                    {$_('nav.projects')}
                 </a>
                 <ThemeSwitch />
+                <LanguageSwitch />
             </div>
         </div>
 
@@ -102,7 +106,7 @@
                             mobileMenuOpen = false;
                         }}
                     >
-                        Blog
+                        {$_('nav.blog')}
                     </a>
                     <a
                         class="block rounded-2xl px-4 py-3 transition-colors hover:bg-gray-400/10 dark:hover:bg-gray-400/30"
@@ -111,7 +115,7 @@
                             mobileMenuOpen = false;
                         }}
                     >
-                        Projects
+                        {$_('nav.projects')}
                     </a>
                 </div>
             </div>

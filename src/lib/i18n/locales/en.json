@@ -1,0 +1,121 @@
+{
+    "nav": {
+        "blog": "Blog",
+        "projects": "Projects",
+        "toggle": "Toggle navigation"
+    },
+    "language": {
+        "label": "Language",
+        "bg": "Bulgarian",
+        "en": "English"
+    },
+    "theme": {
+        "label": "Theme",
+        "light": "Light",
+        "dark": "Dark",
+        "system": "System"
+    },
+    "footer": {
+        "availability": "Available for collaboration"
+    },
+    "copy": {
+        "label": "Copy code snippet",
+        "copiedLabel": "Copied code snippet",
+        "action": "Copy",
+        "copied": "Copied"
+    },
+    "about": {
+        "label": "About",
+        "focus": "Focus",
+        "focusTitle": "Practical software that stays understandable.",
+        "focusItems": {
+            "architecture": "Clean architecture over accidental complexity.",
+            "implementations": "Practical implementations that are easy to maintain.",
+            "interfaces": "Interfaces that stay usable on desktop and mobile."
+        },
+        "stack": "Stack",
+        "experience": "Experience",
+        "backend": "Backend",
+        "frontend": "Frontend",
+        "aiTools": "AI tools",
+        "infrastructure": "Infrastructure",
+        "experienceItems": {
+            "production": "Designed and shipped production applications end to end.",
+            "apis": "Built REST APIs and integrated third-party services.",
+            "database": "Improved database performance through query and schema work.",
+            "legacy": "Refactored legacy codebases without overengineering the fix."
+        },
+        "intro": "I build reliable, maintainable web applications and care about clean architecture, practical trade-offs, and code that another engineer can pick up without friction."
+    },
+    "projects": {
+        "portfolio": "Portfolio",
+        "intro": "A curated list of projects I've built and experimented with over the years. While there's a long queue of works-in-progress behind the scenes, I'm looking forward to wrapping them up and adding them here soon.",
+        "items": {
+            "megaparts": "Megaparts.bg is one of the leading online platforms in Bulgaria for new and secondhand automotive spare parts. The website offers a vast, well-categorized inventory of parts sourced from disassembled vehicles, catering to car owners and mechanics looking for affordable repair solutions with reliable delivery.",
+            "megabitak": "Megabitak.bg is a popular Bulgarian online classifieds platform and marketplace. It connects buyers and sellers nationwide, allowing users to publish free ads for a wide variety of new and secondhand automotive spare parts.",
+            "acceleratedAnswers": "Accelerated Answers is Kantar Profiles' agile, do-it-together (D-I-T) and do-it-yourself (DIY) survey solution for custom market research. The platform enables businesses and marketers to build custom templates, launch quick-polling surveys across global markets, and access dynamic, AI-assisted reporting.",
+            "uvel": "Uvel.bg is an established e-commerce platform specializing in high-quality jewelry, luxury accessories, and stylish timepieces from renowned brands.",
+            "kartichkaQr": "Greeting card generator supporting custom fonts, templates, and audio recording."
+        }
+    },
+    "blog": {
+        "label": "Blog",
+        "title": "Personal thoughts and field notes",
+        "intro": "This page collects my personal views on frameworks, tooling, architecture, and the trade-offs I run into while building software."
+    },
+    "post": {
+        "label": "Blog post",
+        "onThisPage": "On this page"
+    },
+    "errors": {
+        "pageNotFound": "Page not found",
+        "somethingWentWrong": "Something went wrong",
+        "requestFailed": "We could not complete that request.",
+        "unexpected": "An unexpected error interrupted this request. Please try again, or return to the home page.",
+        "checkAddress": "Please check the address and try again.",
+        "backHome": "Back home",
+        "tryAgain": "Try again",
+        "notFoundLabel": "Error 404",
+        "missingTitle": "This page has wandered off.",
+        "missingDescription": "The link may be outdated, or the page may have moved. Let’s get you back to a familiar corner of the site.",
+        "browseBlog": "Browse the blog"
+    },
+    "posts": {
+        "apis-and-microservices-designing-for-distributed-systems": {
+            "title": "APIs and service boundaries: getting the split right",
+            "description": "The hardest part of microservices isn't the technology. It's knowing where to draw the line and what you've committed to once you do."
+        },
+        "claude-code-vs-copilot-cli": {
+            "title": "Epic duel: Claude Code vs GitHub Copilot CLI",
+            "description": "I assumed Copilot CLI was a shell command suggester. It isn't anymore and after using both seriously, Copilot has some real edges worth talking about."
+        },
+        "cursor-ai-experience": {
+            "title": "Six months with Cursor - what actually stuck",
+            "description": "An honest look at what changed in my workflow after using Cursor daily and where the hype oversells it."
+        },
+        "digitalocean-droplets": {
+            "title": "DigitalOcean Droplets: a VPS is still often the right answer",
+            "description": "Not everything needs Kubernetes or a managed PaaS. Sometimes a $6/month Droplet and a bit of setup is the fastest path to a running, maintainable production environment."
+        },
+        "docker-with-php-hmr": {
+            "title": "Docker with PHP and Vite HMR",
+            "description": "How to containerize a Laravel app with Docker, enable Vite's HMR, and create a seamless local development workflow that doesn't fight you."
+        },
+        "laravel-repository-pattern": {
+            "title": "The Repository Pattern in Laravel - when it earns its complexity",
+            "description": "How to implement the Repository Pattern in Laravel and, more importantly, when the abstraction is worth adding."
+        },
+        "multiplexing": {
+            "title": "Multiflexing: managing multiple agents in a terminal",
+            "description": "Terminal multiplexing was already useful. With several AI agents running tasks concurrently across different repos, it's become essential to how I work."
+        },
+        "prisma": {
+            "title": "Prisma: type-safe queries with real migration costs",
+            "description": "Prisma's schema-first approach and generated client are genuinely good. The migration workflow, connection model, and production gotchas deserve more attention before you commit."
+        },
+        "sveltekit": {
+            "title": "SvelteKit made me rethink what a framework should feel like",
+            "description": "Coming from React and Next.js, what surprised me about SvelteKit the reactivity model, the routing conventions, and the one thing I still reach for React for."
+        }
+    }
+}
